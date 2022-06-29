@@ -92,20 +92,43 @@ int	ft_isdigit(char *c)
 	return (0);
 }
 
+void t_search(int *arr)
+{
+ int i;
+ int b;
+
+ i = 0;
+ while(i < 30)
+ {
+    if(arr[i]%2 == 0 || arr[i]%3 == 0 || arr[i]%5 == 0 || arr[i]%7 == 0 ||
+     arr[i]%11 == 0 || arr[i]%11 == 13)
+    {
+        b = 0; 
+        while( arr[i] > 0) 
+        { 
+            b = 10 * b + (arr[i] % 10); 
+            arr[i] /= 10; 
+        } 
+        arr[i] = b;
+    }
+    i++;
+ }
+}
+
 int q_search(int *arr)
 {
     int i;
-    int j;
     int q;
     int min;
     char *str;
+    char *p;
     
     i = 0;
     min = 0;
     while(i < 30)
     {   
        str = ft_itoa(arr[i]); 
-        
+       p = str; 
         while(*str != '\0')
         {
             if(*str == 51)
@@ -118,8 +141,8 @@ int q_search(int *arr)
             }
             str++;
         }
-        free(str);
         i++;
+        free(p);
         if(i == 30 && min == 0)
             return(1);
     }
@@ -178,7 +201,7 @@ void bubble_sort(int *arr)
     while(sort)
     {
         sort = 0;
-        i = 0;
+        i = 1;
         while(i < 30)
             {
                 if(arr[i] < arr[i - 1])
@@ -197,18 +220,17 @@ int main()
 {
     setlocale(LC_ALL, "Rus");
     srand(time(NULL));
+
     int      array[30];
     char         a[15];
     char         b[15];
     char       var[15];
-    int              i;
-    
 
-    i = 0;
+    printf("-----Лабораторная работа номер 6-----\n\n");
     printf("Привет! Эта программа работает с массивами!.\nВам будет предложено задать некоторые параметры!");
     printf("Если вы хотите задать диапазон значений элементов массива нажмите 1.\nВ других случаях это значение будет по умолчанию!\n");
     scanf("%s", &var);
-    if(ft_isdigit(var) == 0 || ft_strlen(a) > 15)
+    if(ft_isdigit(var) == 0 || ft_strlen(var) > 15)
      return (1);
     if(atoi(var) == 1)
     {
@@ -227,12 +249,17 @@ int main()
         print_array(array);
         bubble_sort(array);
         print_array(array);
+        t_search(array);
+        print_array(array);
     }
     else
     {
      init_array(array);
+     q_search(array);
      print_array(array);
      bubble_sort(array);
+     print_array(array);
+     t_search(array);
      print_array(array);
     }
 

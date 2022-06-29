@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <math.h>
+#include <locale.h>
 
 
 int my_power(double x, double y)
@@ -63,12 +64,17 @@ return (sum);
 
 int main()
 {   
+    setlocale(LC_ALL, "Rus");
+    
     int n;
     double eps;
     double line;
 
+    
+    printf("-----Лабораторная работа номер 3-----\n\n");
     eps = 0;
     n = 0;
+    printf(" ");
     printf("Input n ");
     scanf("%i", &n);
     line = Sum1(n);

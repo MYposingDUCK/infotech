@@ -48,12 +48,13 @@ double remainder_sum(double x)
 
 int main()
 {
+    setlocale(LC_ALL, "Rus");
+
     double digit;
     double counter;
     double remc;
     double sum;
-
-    setlocale(LC_ALL, "Rus");
+  
     printf("-----Лабораторная работа номер 1-----\n\n");
     digit = 0;
     counter = A;
